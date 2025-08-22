@@ -29,8 +29,45 @@ public class Lista<T>{
             primeiroNo = novoNo;
             ultimoNo = novoNo;
         } else{
-            novoNo.setNextNo(primeiroNo);
-            primeiroNo = novoNo;
+            ultimoNo.setNextNo(novoNo);
+            ultimoNo = novoNo;
+        }
+    }
+    public void removeInicio(){
+        if(primeiroNo == null){
+            System.out.println("Lista vazia");
+        } else{
+            System.out.println("Dado " + primeiroNo.getDado() + " removido!");
+
+            if(primeiroNo == ultimoNo){
+                primeiroNo = null;
+                ultimoNo = null;
+            }else{
+                primeiroNo = primeiroNo.getNextNo();
+            }
+
+            primeiroNo = primeiroNo.getNextNo();
+        }
+    }
+
+    public No<T> getUltimoNo(){
+        return this.ultimoNo;
+    }
+
+    public void removeFinal(T dado){
+        if(ultimoNo == null){
+            System.out.println("Lista vazia");
+        }else{
+            System.out.println("Dado " + ultimoNo.getDado() + " removido!");
+
+            No<T> aux = primeiroNo;
+
+            while(aux != null){
+                aux = aux.getNextNo();
+            }
+            ultimoNo = aux;
+            aux.setNextNo(null);
+
         }
     }
     
